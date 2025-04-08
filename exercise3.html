@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JS DOM Manipulations</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<style>
+   #display-message{
+    text-align: center;
+   }
+</style>
+
+
+<div class="container">
+    <p id="display-message"></p>
+    <div class="row justify-content-center">
+        <div class="col-md-8 myform border rounded p-4 mt-5">
+            <div class="form-group">
+                <label for="message">Text content:</label>
+                <input onkeyup="displayMess()" type="text" class="form-control" id="message" placeholder="Enter new text" name="message">
+            </div>
+            <div class="form-group">
+                <label for="color">Text color:</label>
+                <select name="color" id="color" class="custom-select" onchange="changeMessColor()">
+                    <option value="black">Black</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                </select>
+            </div>
+            <div class="form-group">
+                
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="bold" onchange="changeWeight()">
+                    <label class="custom-control-label" for="bold">Bold</label>
+                </div>
+    
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="italic" onchange="italicc()">
+                    <label class="custom-control-label" for="italic">Italic</label>
+                </div>
+    
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="underline" onchange="underlinee()"> 
+                    <label class="custom-control-label" for="underline">Underline</label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-success" onclick="restore()">Restore Default</button>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-8 alert alert-success text-center">This text will be changed immediately when typing new text.</div>
+    </div>
+
+</div>
+
+<script>
+    function displayMess(){
+        let value = document.getElementById("message").value;
+        document.getElementById("display-message").innerHTML = value;
+    }
+    function changeMessColor(){
+        let color = document.getElementById("color").value;
+        let message = document.getElementById("display-message");
+
+        message.style.color = color;
+    }
+    function changeWeight(){
+        let message = document.getElementById("display-message");
+        let option = document.getElementById("bold")
+        if(option.checked){
+            message.style.fontWeight = "bold";
+        }else{
+            message.style.fontWeight = "normal";
+        }
+    }
+    function italicc(){
+        let message = document.getElementById("display-message");
+        let option = document.getElementById("italic");
+        if(option.checked){
+            message.style.fontStyle = "italic";
+        }else{
+            message.style.fontStyle = "normal";
+        }
+    }
+    function underlinee(){
+        let message = document.getElementById("display-message")
+        let option = document.getElementById("underline")
+        if(option.checked){
+            message.style.textDecoration = "underline"
+        }else{
+            message.style.textDecoration = "none";
+        }
+    }
+    function restore(){
+        let message = document.getElementById("display-message")
+
+        message.style.color = "black"
+        message.style.fontWeight = "normal"
+        message.style.fontStyle = "normal";
+        message.style.textDecoration = "none";
+        
+        document.getElementById("bold").checked = false;
+        document.getElementById("italic").checked = false;
+        document.getElementById("underline").checked = false;
+        document.getElementById("color").value = "black";
+    }
+
+</script>
+
+</body>
+</html>
